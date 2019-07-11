@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Image Carousel</title>
+<link rel="stylesheet" href="main.css">
+</head>
+<body>
+  <div class="carousel-container" id = "carousel-container-id">
+    <div class="carousel-image-wrapper" id = "carousel-image-wrapper-id">
+    <img src="./images/image1.jpg" alt="Image" />
+    <img src="./images/image2.jpg" alt="Image" />
+    <img src="./images/image3.jpg" alt="Image" />
+    <img src="./images/image4.jpg" alt="Image" />
+    </div>
+  </div>
+
+  <div class="carousel-container" id = "carousel-container-id">
+    <div class="carousel-image-wrapper" id = "carousel-image-wrapper-id">
+    <img src="./images/image1.jpg" alt="Image" />
+    <img src="./images/image2.jpg" alt="Image" />
+    <img src="./images/image3.jpg" alt="Image" />
+    <img src="./images/image4.jpg" alt="Image" />
+    </div>
+  </div>
+
+  <div class="carousel-container" id = "carousel-container-id">
+    <div class="carousel-image-wrapper" id = "carousel-image-wrapper-id">
+    <img src="./images/image1.jpg" alt="Image" />
+    <img src="./images/image2.jpg" alt="Image" />
+    <img src="./images/image3.jpg" alt="Image" />
+    <img src="./images/image4.jpg" alt="Image" />
+    </div>
+  </div>
+
+  <div class="carousel-container" id = "carousel-container-id">
+    <div class="carousel-image-wrapper" id = "carousel-image-wrapper-id">
+    <img src="./images/image1.jpg" alt="Image" />
+    <img src="./images/image2.jpg" alt="Image" />
+    <img src="./images/image3.jpg" alt="Image" />
+    <img src="./images/image4.jpg" alt="Image" />
+    </div>
+  </div>
+
+<script src = "script.js"></script>
+
+<script>
+
+  let canvas1 = document.getElementsByClassName('carousel-container')[0];
+  let canvasImageWrapper1 = document.getElementsByClassName('carousel-image-wrapper')[0];
+  let carousel1 = new Carousel(canvas1, canvasImageWrapper1, 40, 2000);
+
+  let canvas2 = document.getElementsByClassName('carousel-container')[1];
+  let canvasImageWrapper2 = document.getElementsByClassName('carousel-image-wrapper')[1];
+  let carousel2 = new Carousel(canvas2, canvasImageWrapper2, 80, 3000);
+
+  let canvas3 = document.getElementsByClassName('carousel-container')[2];
+  let canvasImageWrapper3 = document.getElementsByClassName('carousel-image-wrapper')[2];
+  let carousel3 = new Carousel(canvas3, canvasImageWrapper3, 20, 2500);
+
+
+  let canvas4 = document.getElementsByClassName('carousel-container')[3];
+  let canvasImageWrapper4 = document.getElementsByClassName('carousel-image-wrapper')[3];
+  let carousel4 = new Carousel(canvas4, canvasImageWrapper4, 155, 2100);
+
+</script>
+</body>
+</html>
