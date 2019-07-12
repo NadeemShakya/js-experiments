@@ -12,7 +12,7 @@ class Bubble {
 	}
 
 	// method to draw the bubbles with ants
-	showBubbles = () => {
+	showBubbles() {
 		ctx.beginPath();
 		ctx.strokeStyle = "rgba(0, 0, 0, 0.1)";
 		ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
@@ -23,7 +23,7 @@ class Bubble {
 	}
 
 	// move the ants around.
-	moveBubbles = () => {
+	moveBubbles() {
 		this.x = this.x + this.velocity.x;
 		this.y = this.y + this.velocity.y;
 		if(this.x <= this.radius || this.y <= this.radius || 
