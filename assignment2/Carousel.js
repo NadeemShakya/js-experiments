@@ -6,6 +6,9 @@ const IMAGE_COUNT = 4;
 const FPS = 60;
 const CAROUSEL_CONTAINER_WIDTH = 49; // 49view port width.
 const SLIDER_ARROW_WIDTH = SLIDER_ARROW_HEIGHT = 40;
+const SLIDER_CONTAINER_WIDTH = 50;
+const SLIDER_CONTAINER_HEIGHT = 80;
+const DOT_CONTAINER_WIDTH = DOT_CONTAINER_HEIGHT = 15;
 
 class Carousel {
   constructor(carouselContainer, carouselImgWrapper, animationTime, holdTime) {
@@ -52,8 +55,8 @@ class Carousel {
     this.leftButton.className = "leftSliderArrow";
     this.leftButton.style.position = "absolute";
     this.leftButton.style.display = "block";
-    this.leftButton.style.height = `${80}px`;
-    this.leftButton.style.width = `${50}px`;
+    this.leftButton.style.height = `${SLIDER_CONTAINER_HEIGHT}px`;
+    this.leftButton.style.width = `${SLIDER_CONTAINER_WIDTH}px`;
     this.leftButton.style.top = `${50}%`;
     this.leftButton.style.transform = `translate(${0}, ${-50}%)`;
     this.leftButton.style.background= `rgba(${255}, ${255}, ${255}, ${0.6})`;
@@ -72,8 +75,8 @@ class Carousel {
     this.rightButton.className = "rightSliderArrow";
     this.rightButton.style.position = "absolute";
     this.rightButton.style.display = "block";
-    this.rightButton.style.height = `${80}px`;
-    this.rightButton.style.width = `${50}px`;
+    this.rightButton.style.height = `${SLIDER_CONTAINER_HEIGHT}px`;
+    this.rightButton.style.width = `${SLIDER_CONTAINER_WIDTH}px`;
     this.rightButton.style.top = `${50}%`;
     this.rightButton.style.right = `${0}px`;
     this.rightButton.style.transform = `translate(${0}, ${-50}%)`;
@@ -117,8 +120,8 @@ class Carousel {
       this.dot = document.createElement('div');
       this.dot.className = "dot";
       this.dot.style.display = "inline-block";
-      this.dot.style.height = `${10}px`;
-      this.dot.style.width = `${10}px`;
+      this.dot.style.height = `${DOT_CONTAINER_HEIGHT}px`;
+      this.dot.style.width = `${DOT_CONTAINER_WIDTH}px`;
       this.dot.style.background= `rgba(${255}, ${255}, ${255}, ${0.7})`;
       this.dot.style.borderRadius = `${50}%`;
       this.dot.style.marginRight = `${5}px`;
