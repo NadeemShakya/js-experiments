@@ -15,7 +15,7 @@ class Bubble {
   }
 
   // function to show bubble on canvas.
-  show = () => {
+  show(){
     ctx.beginPath();
     ctx.strokeStyle = `rgb(${this.r}, ${this.g}, ${this.b})`;
     ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
@@ -23,7 +23,7 @@ class Bubble {
   }
 
   // update and move bubble positions.
-  move = () => {
+  move(){
     this.x = this.x + this.velocity.x;
     this.y = this.y + this.velocity.y;
     if(this.x <= this.radius || this.y <= this.radius || 
