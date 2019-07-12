@@ -26,11 +26,16 @@ class Bubble {
 	moveBubbles() {
 		this.x = this.x + this.velocity.x;
 		this.y = this.y + this.velocity.y;
+    this.checkBorderCollision();
+	}
+
+	// checkBorderCollision
+	checkBorderCollision() {
 		if(this.x <= this.radius || this.y <= this.radius || 
-			this.x + this.radius >= canvas.width || this.y + this.radius >= canvas.height) {
-			this.velocity.x = - this.velocity.x;
-			this.velocity.y = - this.velocity.y;
-		}   
+      this.x + this.radius >= canvas.width || this.y + this.radius >= canvas.height) {
+      this.velocity.x = - this.velocity.x;
+      this.velocity.y = - this.velocity.y;
+		} 
 	}
 
 	// check if one bubble touches other bubbles.
