@@ -47,7 +47,7 @@ class Bird {
   }
 
   // check if the bird hits the ground.
-  isHittingGround() {
+  hasHittingGround() {
     if(this.y + this.size >= this.HEIGHT - 90) {
       return true;
     }

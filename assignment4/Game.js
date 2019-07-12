@@ -147,7 +147,7 @@ class Game {
     }
 
     // update bool if bird hits the ground.
-    if(this.bird.isHittingGround()) {
+    if(this.bird.hasHittingGround()) {
 
       this.isBirdAlive  = false;
       cancelAnimationFrame(this.animationFrame); // stop the animation.
