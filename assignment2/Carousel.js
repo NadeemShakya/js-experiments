@@ -4,6 +4,8 @@ let rightDirection = false;
 const IMAGE_HEIGHT = 300;
 const IMAGE_COUNT = 4;
 const FPS = 60;
+const CAROUSEL_CONTAINER_WIDTH = 49; // 49view port width.
+const SLIDER_ARROW_WIDTH = SLIDER_ARROW_HEIGHT = 40;
 
 class Carousel {
   constructor(carouselContainer, carouselImgWrapper, animationTime, holdTime) {
@@ -26,7 +28,7 @@ class Carousel {
     // setting css properties
 
     // styling carousel container
-    this.carouselContainer.style.width = `${49}vw`;
+    this.carouselContainer.style.width = `${CAROUSEL_CONTAINER_WIDTH}vw`;
     this.carouselContainer.style.height = `${IMAGE_HEIGHT}px`;
     this.carouselContainer.style.overflow = "hidden";
     this.carouselContainer.style.position = "relative";
@@ -43,8 +45,8 @@ class Carousel {
     this.leftButton = document.createElement('div');
     this.imgHolder = document.createElement('img');
     this.imgHolder.src = `./images/left-arrow.png`;
-    this.imgHolder.style.height = `${40}px`;
-    this.imgHolder.style.width = `${40}px`;
+    this.imgHolder.style.height = `${SLIDER_ARROW_HEIGHT}px`;
+    this.imgHolder.style.width = `${SLIDER_ARROW_WIDTH}px`;
     this.imgHolder.style.marginTop = `${20}px`;
     this.leftButton.appendChild(this.imgHolder);
     this.leftButton.className = "leftSliderArrow";
@@ -62,8 +64,8 @@ class Carousel {
     this.rightButton = document.createElement('div');
     this.imgHolder = document.createElement('img');
     this.imgHolder.src = `./images/right-arrow.png`;
-    this.imgHolder.style.height = `${40}px`;
-    this.imgHolder.style.width = `${40}px`;
+    this.imgHolder.style.height = `${SLIDER_ARROW_HEIGHT}px`;
+    this.imgHolder.style.width = `${SLIDER_ARROW_WIDTH}px`;
     this.imgHolder.style.marginTop = `${20}px`;
     this.imgHolder.style.marginLeft = `${10}px`;
     this.rightButton.appendChild(this.imgHolder);
