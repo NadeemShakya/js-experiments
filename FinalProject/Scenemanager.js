@@ -132,7 +132,6 @@ SceneManager.prototype.init = function() {
         game.isGameRunning = true;   
         this.newLevel = new Level(this.setLevels[this.levelIndex].backgroundImage, this.setLevels[this.levelIndex].enemyHealth, this.setLevels[this.levelIndex].images, this.setLevels[this.levelIndex].enemyAttackPower, this.setLevels[this.levelIndex].enemyLevel, this.setLevels[this.levelIndex].isScrollAvailable);
        
-            console.log("anmiate");
             this.newLevel.animateCharacters();
         
         this.currentLevel = this.newLevel;

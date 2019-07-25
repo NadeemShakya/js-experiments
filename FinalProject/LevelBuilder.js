@@ -166,7 +166,7 @@ Level.prototype.display = function() {
         }else if(game.character === "female") {
             AUDIOS.NINJAGIRLDYING.play();
         }
-        var enemyDyingAnimation = setInterval(() => {
+        var playerDyingAnimation = setInterval(() => {
         
             frameC++;
             currentIndex = ++currentIndex % FRAMECOUNT;
@@ -183,7 +183,7 @@ Level.prototype.display = function() {
             game.player.draw();
             }else {
 
-                clearInterval(enemyDyingAnimation);
+                clearInterval(playerDyingAnimation);
                 clearInterval(game.enemyThrowableInterval);  
                 currentLevel = new StartScene(SPRITES.GAMEOVERSCREEN);
                 currentLevel.display();
@@ -248,6 +248,7 @@ Level.prototype.display = function() {
         game.player.attackingEnemy(game.enemy);
         game.enemy.showHealth(C_WIDTH - 145, 20);
     }else {
+
         if(scene.currentLevel.enemyLevel === 3) {
             clearInterval(level3EnemyPersona);
         }else if(scene.currentLevel.enemyLevel === 4) {
@@ -256,8 +257,8 @@ Level.prototype.display = function() {
             clearInterval(level5EnemyPersona);
         }
         game.enemy.resetBooleansifDead();
-        game.enemy.update();
-        game.enemy.draw();
+        // game.enemy.update();
+        // game.enemy.draw();
         game.enemy.showHealth(C_WIDTH - 100 - 45, 20);
         clearInterval(game.enemyThrowableInterval);
         game.enemyThrowables = [];
@@ -269,13 +270,17 @@ Level.prototype.display = function() {
     if(this.isScrollCollected && game.enemy.isPlayerDead()) {
         game.healthPotions = [];
         game.staminaPotions = [];
+        game.enemyThrowables = [];
+        game.kunais = [];  
         game.isNext = true;
         clearInterval(game.enemyThrowableInterval);
         if(scene.currentLevel.enemyLevel === 3) {
             clearInterval(level3EnemyPersona);
         }else if(scene.currentLevel.enemyLevel === 4) {
             clearInterval(level4EnemyPersona);
-        }        
+        }else if(scene.currentLevel.enemyLevel === 5) {
+            clearInterval(level5EnemyPersona);            
+        } 
 
         
     }
