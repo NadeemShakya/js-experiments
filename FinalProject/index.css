@@ -1,0 +1,109 @@
+
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    padding: 0;
+    /* background: #1b1836; */
+    background: green;
+
+}
+
+canvas {
+    display: block;
+    margin: 0 auto;
+    width: 80%;
+}
+
+.gameContainer {
+    position: relative;
+    /* background: red; */
+    width: 700px;
+    height: 450px;
+    margin: 0 auto;
+    top: 100px;
+
+}
+.playGame, .gameInstruction, .levelCompleted, .playAgain, .chooseCharacter, .viewEnemies, .ok{
+    position: absolute;
+    width: 150px;
+    border-radius: 3px;
+    border: none;
+    padding: 8px;
+    background: #302235;
+    color: #f6b602;
+    font-size: 12px;
+    font-family: jokerman;
+    transition: .3s;
+    text-align: center;
+}
+
+.ok {
+    width: 50px;
+    top: 315px;
+    left: 320px;
+    display: none;
+}
+.playGame {
+    top: 300px;
+    left:120px;
+    display: none;
+
+}
+.chooseCharacter {
+    left: 275px;
+    top: 300px;
+    display: none;
+}
+.gameInstruction {
+    left: 400px;
+    top: 300px;
+    display: none;
+}
+.viewEnemies {
+    top: 300px;
+    left: 430px;
+    display: none;
+    
+}
+
+.levelCompleted {
+    top: 300px;
+    left: 275px;
+    display: none;
+
+}
+.playAgain {
+    top: 290px;
+    left: 250px;
+    display: none;
+}
+.playGame:hover, .gameInstruction:hover, .levelCompleted:hover, .playAgain:hover, .chooseCharacter:hover, .viewEnemies:hover, .ok:hover{
+    color: #ca440d;
+    cursor: pointer;
+}
+.characterSelector {
+    position: absolute;
+    top:100px;
+    left: 70px;
+    width: 80%;
+}
+
+.maleCharacter, .femaleCharacter {
+    width: 50%;
+    float: left;
+    /* background: red; */
+    text-align: center;
+    display: none
+}
+
+.characterSelector img {
+    width: 50%;
+    cursor: pointer;
+}
+
+.characterSelector img:hover {
+    transform: scale(1.5);
+    transition: .3s;
+}
