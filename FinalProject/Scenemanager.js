@@ -36,7 +36,7 @@ class SceneManager {
             {
                 backgroundImage: SPRITES.BACKGROUND_3,
                 enemeyHealth: 80,
-                enemyAttackPower : 0.35,
+                enemyAttackPower : 0.4,
                 images: [SPRITES.SAMURAIICON, SPRITES.SAMURAIDLE, SPRITES.SAMURAIRUNNING, SPRITES.SAMURAIATTACKING, SPRITES.SAMURAIDYING],        
                 enemyLevel: 3,
                 isScrollAvailable: game.scrollSlot[2]
@@ -46,8 +46,8 @@ class SceneManager {
                 // Level2
                 // ork
                 backgroundImage:  SPRITES.BACKGROUND_4,
-                enemyHealth: 60,
-                enemyAttackPower: 0.5,
+                enemyHealth: 90,
+                enemyAttackPower: 0.55,
                 images: [SPRITES.SAMURAIHEAVYICON, SPRITES.SAMURAIHEAVYIDLE,  SPRITES.SAMURAIHEAVYRUNNING, SPRITES.SAMURAIHEAVYATTACKING, SPRITES.SAMURAIHEAVYDYING],
                 enemyLevel: 4,
                 isScrollAvailable: game.scrollSlot[3]

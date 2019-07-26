@@ -158,6 +158,15 @@ Level.prototype.display = function() {
     }else {
         cancelAnimationFrame(this.animatingLoop);
         cancelAnimationFrame(scene.sceneLoop);
+        
+        if(scene.currentLevel.enemyLevel === 3) {
+            clearInterval(level3EnemyPersona);
+        }else if(scene.currentLevel.enemyLevel === 4) {
+            clearInterval(level4EnemyPersona);
+        }else if(scene.currentLevel.enemyLevel === 5) {
+            clearInterval(level5EnemyPersona);
+        }
+        
         game.player.resetBooleansifDead();
         frameC = 0;
         currentIndex = 0;

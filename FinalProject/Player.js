@@ -297,7 +297,8 @@ Player.prototype.keyboardController = function(keys, delay) {
 
 Player.prototype.useHealthPotion = function() {
   if(game.healthPotionsCollected !== 0) {
-    AUDIOS.DRINKPOTION.play();
+    var audio = AUDIOS.DRINKPOTION.cloneNode();
+    audio.play();
     this.health += 20;
     game.healthPotionsCollected--;
     if(game.healthPotionsCollected < 0) {
@@ -312,8 +313,8 @@ Player.prototype.useHealthPotion = function() {
 
 Player.prototype.useStaminaPotion = function() {
   if(game.staminaPotionsCollected !== 0) {
-    AUDIOS.DRINKPOTION.play();
-
+    var audio = AUDIOS.DRINKPOTION.cloneNode();
+    audio.play();
     this.stamina += 20;
     game.staminaPotionsCollected--;
     if(game.staminaPotionsCollected < 0) {
