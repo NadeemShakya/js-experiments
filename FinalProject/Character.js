@@ -13,8 +13,6 @@ const SPRITEHEIGHT = 1400;
 const FRAMEWIDTH = SPRITEWIDTH / FRAMECOLS;
 const FRAMEHEIGHT = SPRITEHEIGHT / FRAMEROWS;
 
-
-
 class Character {
     constructor(x, y, width, height, movingDirection, spriteIndex, images, attackPower, movementSpeed, health, level) {
      
@@ -59,19 +57,9 @@ class Character {
 
 // pull game.player character by gravity force.
 Character.prototype.pullByGravity = function() {
-
   this.velocity.y += this.gravity;
 }
 
-Character.prototype.updatePlayer = function() {
-  if(this.y + this.height >= C_HEIGHT - 60) {
-    this.isonGround = true;
-  }else {
-    this.isonGround = false;
-
-  }
-
-}
 // check if the game.player character is on ground.
 Character.prototype.isPlayeronGround = function() {
 
@@ -82,8 +70,6 @@ Character.prototype.isPlayeronGround = function() {
     this.isonGround = false;
     return false;
 }
-
-
 // move character left.
 Character.prototype.moveLeft = function() {
   if(!this.isDead) {
@@ -107,16 +93,21 @@ if(!this.isDead) {
 }
 // character is attacking.
 Character.prototype.swordAttack = function() {
-
   if(!this.isDead) {
     this.isIdle = false;
     this.isRunning = false;
     this.isAttacking = true;  
   }
-  
+}
+// update if the player is on ground or not.
+Character.prototype.updatePlayer = function() {
+  if(this.y + this.height >= C_HEIGHT - 60) {
+    this.isonGround = true;
+  }else {
+    this.isonGround = false;
+  }
 }
 Character.prototype.throwAttack = function() {
-    
     if(!this.isDead) {
       if(game.kunaiCount != 0) {
         game.generateKunais();
@@ -124,16 +115,13 @@ Character.prototype.throwAttack = function() {
         click.play();        
         game.kunaiCount --;
       }
-
       this.isIdle = false;
       this.isRunning = false;
       this.isSliding = false;
       this.isAttacking = false;
       this.isJumping = false;  
-      this.isThrowing = true;  
-      
+      this.isThrowing = true;   
     }
-
 }
 Character.prototype.slideAttack = function() {
   if(!this.isDead) {
@@ -148,7 +136,6 @@ Character.prototype.slideAttack = function() {
 Character.prototype.jump = function() {
   if(!this.isDead && game.isGameRunning) {
     
-    // this.isJumping = true;
     if(this.isonGround) {
       this.velocity.y -= this.jumpingForce; 
     }
@@ -156,7 +143,6 @@ Character.prototype.jump = function() {
 }
 // character's health.
 Character.prototype.showHealth = function(x, y) {
-
   game.ctx.beginPath();
   game.ctx.fillStyle= "grey";
   game.ctx.fillRect(x, y, 100, 10);

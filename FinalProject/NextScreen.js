@@ -1,3 +1,4 @@
+// For showing the next screen between the levels
 class NextScreen extends Level{
     constructor(backgroundImage) {
         super();
@@ -5,14 +6,12 @@ class NextScreen extends Level{
     }
 }
 
-
+// show ninja info between the stages.
 NextScreen.prototype.showInfo = function() {
-
     game.ctx.beginPath();
     game.ctx.fillStyle = "#ffffff";
     game.ctx.font = "36px Segoe Script";
     game.ctx.fillText(`${scene.levelIndex + 1}`, 275, 90);
-
     game.ctx.font = "26px Segoe Script";
     game.ctx.fillText(`${Math.floor(game.player.health)}`, 310, 225);
     game.ctx.fillText(`${game.kunaiCount}`, 275, 280);
@@ -20,8 +19,7 @@ NextScreen.prototype.showInfo = function() {
     game.ctx.closePath();
 }
 
-
-
+// for the end screen.
 NextScreen.prototype.showEndscreen = function() {
     game.ctx.beginPath();
     game.ctx.fillStyle = "#fff";
@@ -30,6 +28,7 @@ NextScreen.prototype.showEndscreen = function() {
     game.ctx.closePath();
 }
 
+// display the next screen.
 NextScreen.prototype.display = function() {
     game.ctx.drawImage(this.backgroundImage, 0, 0);
 }

@@ -3,22 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>3 FOOT NINJA </title>
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
     <div class="gameContainer">
         <canvas id = "canvas"></canvas>
+        <!-- to select the male or female character -->
         <div class="characterSelector">
             <div class="maleCharacter" id = "maleCharacterID">
                 <img src="./images/gameplay/maleCharacter.png" alt="male-character">
             </div>
             <div class="femaleCharacter" id = "femaleCharacterID">
-
                 <img src="./images/gameplay/femaleCharacter.png" alt="female-character">
             </div>
 
         </div>
+        <!-- buttons required for the game -->
         <button class = "playGame" id = "playGameID">PLAY GAME</button>
         <button class = "chooseCharacter" id = "chooseCharacterID">CHOOSE PLAYER</button>
         <button class = "viewEnemies" id = "viewEnemiesID">VIEW ALL ENEMIES</button>
@@ -27,6 +28,7 @@
         <button class = "levelCompleted" id = "levelCompletedID">Go To Next Level</button>
         <button class = "playAgain" id = "playAgainID">TRY AGAIN</button>
     </div>
+
 <script src="Kunai.js"></script>
 <script src="Thorns.js"></script>
 <script src="Throwable.js"></script>
@@ -35,20 +37,11 @@
 <script src = "Player.js"></script> 
 <script src = "Game.js"></script>
 <script src = "Enemy.js"></script>
-
-
-
 <script src = "LevelBuilder.js"></script>
 <script src = "NextScreen.js"></script>
 <script src = "StartScene.js"></script>
 <script src = "Scenemanager.js"></script> 
 
-<script>
-    game = new Game(canvas);
-</script>
-
-
 </body>
-
 
 </html>

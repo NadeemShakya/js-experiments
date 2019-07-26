@@ -11,21 +11,22 @@ const TOTALLEVELS = 5;
 // manipulating canvas.
 let canvas = document.getElementById('canvas');
 let ctx = canvas.getContext("2d");
-
+canvas.width = C_WIDTH;
+canvas.height = C_HEIGHT;
 // making the loading screen.
 let assetsStillLoading = 0;
 let assetsLoader;
 let numAssets;
 let loadedPercent;
-
 let game, scene, animatingCharacters;
 
+// utility functions.
 let randomNumbers = (max, min) => Math.floor(Math.random() * (max - min)) + min;
-
 Number.prototype.map = function(in_min, in_max, out_min, out_max) {
     return (this - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
 
+// accessing DOM elements.
 let playGameButton = document.getElementById("playGameID") ;
 let okiGotItButton = document.getElementById("gameInstructionID");
 let levelCompletedButton = document.getElementById("levelCompletedID");
@@ -37,6 +38,7 @@ let viewEnemiesButton = document.getElementById("viewEnemiesID");
 let okButton = document.getElementById("okID");
 let characterImage;
 
+// main Game Class.
 class Game {
     constructor(element) {
         this.canvas = element;
@@ -134,7 +136,7 @@ class Game {
         this.timeTracker = 0;
         this.scrollSlot = [true, true, true, true, true];        
         this.scrollCount = 0;
-        this.ninjaBoyAttackPower = 0.5;
+        this.ninjaBoyAttackPower = 100;
         this.enemySpeed = 2.7;
         this.isGameRunning = false;
         this.scrollHolder = [];
@@ -157,13 +159,12 @@ class Game {
 }
 
 // Game Timer Function.
+// only used for level 2.
 Game.prototype.timer = function() {
-    console.log("timer");
     let timerTracker = setInterval(() => {
         this.isPoweringUp = true;
         this.timeTracker++;
         if(scene.currentLevel.enemyLevel === 2) {
-            
             this.enemy.speed = 3;
             this.enemy.attackPower = 0.3;
             this.enemy.width = 130;
@@ -171,7 +172,6 @@ Game.prototype.timer = function() {
             this.enemy.y -= 7;
         }
         if(this.timeTracker == 30) {
-
             clearInterval(timerTracker);
             this.timeTracker = 0;
             if(this.enemy.level === 3) {
@@ -183,50 +183,48 @@ Game.prototype.timer = function() {
     }, 30);    
 }
 
+// player throwing kunais at enemy.
 Game.prototype.generateKunais = function() {
     let newKunai = new Throwable(this.player.x, this.player.y + this.player.height / 2.5, SPRITES.KUNAI_IMG);
     newKunai.init(this.player);
     game.kunais.push(newKunai);
 }
 
+// shows the amount of scrolls collected.
 Game.prototype.showScrollCount = function() {
     this.ctx.beginPath();
     this.ctx.drawImage(SPRITES.SCROLL, C_WIDTH / 2.1, C_HEIGHT - 25, 20, 25);
     this.ctx.fillText(`${this.scrollCount}`, C_WIDTH / 2.1 + 30, C_HEIGHT - 10);
-
     this.ctx.closePath();
 }
-
+// shows the number of Kunais left.
 Game.prototype.showKunaiCount = function() {
     this.ctx.beginPath();
     this.ctx.drawImage(SPRITES.KUNAI_ICON, C_WIDTH / 1.84, C_HEIGHT - 28, 20, 25);
     this.ctx.fillText(`${this.kunaiCount}`, C_WIDTH / 1.84 + 30, C_HEIGHT - 10);
     this.ctx.closePath();
 }
-
-
+// to genereate enemies at each level.
 Game.prototype.generateEnemies = function(enemyHealth, enemyImages, enemyAttackPower, enemyLevel) {
-    
     this.enemy = new Enemy(100, null, 110, 120, enemyImages, enemyAttackPower, this.enemySpeed, enemyHealth, enemyLevel)
 }
-
+// to generate player at each level.
 Game.prototype.generatePlayer = function() {
     this.player = new Player(C_WIDTH / 2 - PLAYER_WIDTH, C_HEIGHT  - PLAYER_HEIGHT,
         PLAYER_WIDTH, PLAYER_HEIGHT, RIGHT, 0, this.playerImages, this.ninjaBoyAttackPower, 10);            
 }
-
+// reposition player after each level.
 Game.prototype.repositionPlayer = function() {
     this.player.x = C_WIDTH / 2 - PLAYER_WIDTH;
     this.player.y = C_HEIGHT  - PLAYER_HEIGHT;
 }
-
+// used for enemy personas.
 Game.prototype.enemyThrowsObjects = function() {
 
     if(this.enemy) {
         if(scene.currentLevel.enemyLevel === 2) {
             
             this.enemyThrowableInterval = setInterval(() => {
-                console.log("enemyThrowableInterval");
                 if(!this.isPoweringUp) {
                     let tempEnemyThrowable = new Throwable(this.enemy.x, this.enemy.y + this.enemy.height / 2.5, SPRITES.ORK_THROWABLE, null, null, null, 50);
                     tempEnemyThrowable.init(this.enemy);
@@ -250,7 +248,7 @@ Game.prototype.enemyThrowsObjects = function() {
     }
 
 }
-
+// to place Pickable Kunais at the platforms.
 Game.prototype.placePickableKunais = function() {
     for(let i = 1; i <= TOTALLEVELS; i++) {
 
@@ -272,8 +270,9 @@ Game.prototype.placePickableKunais = function() {
     }
 }
 
-
+// LOADING ALL THE NCESSARY ASSESTS FIRst.
 function assetsLoadingLoop(callback) {
+
     loadedPercent=((numAssets-assetsStillLoading)/numAssets)*100;
     ctx.beginPath();
     ctx.fillStyle='black';
@@ -284,7 +283,7 @@ function assetsLoadingLoop(callback) {
     ctx.fillStyle='#f6b602';
     ctx.font="50px Jokerman";
     ctx.fillText(`${parseInt(loadedPercent)}%`,C_WIDTH/2,C_HEIGHT/2+80);
-    ctx.beginPath();    
+    ctx.closePath();  
     if(assetsStillLoading == 0){
         callback();
         window.cancelAnimationFrame(assetsLoader);
@@ -297,36 +296,29 @@ function loadAssets(callback) {
     
     //once this function finishes to load all assets this callback function gets activated
 
+    // load the sprites
     function loadSprite(fileName) {
       assetsStillLoading++;
-  
       let spriteImage = new Image();
       spriteImage.src = fileName;
-  
       spriteImage.onload = function() {
         assetsStillLoading--;
       }
-
       spriteImage.onerror = function() {
           assetsStillLoading--;
       }
-      
-  
       return spriteImage;
     }
-
+    // load the audio
     function loadAudio(fileName){
         assetsStillLoading++;
-
         let audio = new Audio(fileName);
         audio.oncanplaythrough = function(){
-            assetsStillLoading--;
-            
-            
+            assetsStillLoading--; 
         };
         return audio;
     }
-  
+
     // loading audios.
     AUDIOS.BACKGROUND = loadAudio('./sounds/backgroundMusic.ogg'); 
     AUDIOS.SWING = loadAudio('./sounds/swing.mp3'); 
@@ -383,8 +375,6 @@ function loadAssets(callback) {
     SPRITES.NINJAGIRLDYING = loadSprite("./images/player/ninjaGirlDying.png");
     SPRITES.NINJAGIRLSLIDING = loadSprite("./images/player/ninjaGirlSliding.png");
     SPRITES.NINJAGIRLTHROWING = loadSprite("./images/player/ninjaGirlThrowing.png");
-
-
     
     // defining level 1 Bandit image sprites.
     SPRITES.BANDITICON = loadSprite("./images/enemy/enemyIcon.png");
@@ -444,7 +434,7 @@ function loadAssets(callback) {
 }  
 
 loadAssets(function() {
-    
+
     game = new Game(canvas);
     scene = new SceneManager();
     scene.startInterval();

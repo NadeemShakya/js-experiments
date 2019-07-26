@@ -6,18 +6,15 @@ body {
     margin: 0;
     padding: 0;
     background: #1b1836;
-
+    background: green;
 }
-
 canvas {
     display: block;
     margin: 0 auto;
     width: 80%;
 }
-
 .gameContainer {
     position: relative;
-    /* background: red; */
     width: 700px;
     height: 450px;
     margin: 0 auto;
@@ -92,7 +89,6 @@ canvas {
 .maleCharacter, .femaleCharacter {
     width: 50%;
     float: left;
-    /* background: red; */
     text-align: center;
     display: none
 }

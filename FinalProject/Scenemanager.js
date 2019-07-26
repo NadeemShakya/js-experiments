@@ -9,7 +9,6 @@ class SceneManager {
         this.sceneLoop;
         this.setLevels = [
 
-            
             {   // Level1
                 // bandit
                 backgroundImage: SPRITES.BACKGROUND_1,
@@ -30,7 +29,6 @@ class SceneManager {
                 isScrollAvailable: game.scrollSlot[1]
         
             },
-        
                 // Level 3
                 // samurai
             {
@@ -43,8 +41,8 @@ class SceneManager {
         
             },
             {
-                // Level2
-                // ork
+                // Level4
+                // conqueror
                 backgroundImage:  SPRITES.BACKGROUND_4,
                 enemyHealth: 90,
                 enemyAttackPower: 0.55,
@@ -63,24 +61,18 @@ class SceneManager {
                 isScrollAvailable: game.scrollSlot[4]
         
             },
-        
-        
         ]
 
         this.init();
     }
-    
-
-
-
 }
 
+// initialize the screen.
 SceneManager.prototype.init = function() {
     this.currentLevel = this.startScene;
     this.levels.push(this.newLevel);
 
     playGameID.addEventListener("click", () => {
-
         this.currentLevel = new StartScene(SPRITES.CONTROLSCREEN);
         playGameID.style.display = "none";
         okiGotItButton.style.display = "block";
@@ -89,7 +81,6 @@ SceneManager.prototype.init = function() {
     
     })
 
-    
     chooseCharacterID.addEventListener("click", () => {
         this.currentLevel = new StartScene(SPRITES.CHOOSECHARACTER);
         playGameID.style.display = "none";
@@ -99,7 +90,6 @@ SceneManager.prototype.init = function() {
         viewEnemiesButton.style.display = "none";
 
     })
-
     maleCharacter.addEventListener("click", () => {
         game.playerImages = [SPRITES.NINJABOYICON, SPRITES.NINJABOYIDLE, SPRITES.NINJABOYRUNNING, SPRITES.NINJABOYATTACKING, SPRITES.NINJABOYJUMPING, SPRITES.NINJABOYDEAD, SPRITES.NINJABOYSLIDING, SPRITES.NINJABOYTHROWING];
         game.generatePlayer();
@@ -109,11 +99,8 @@ SceneManager.prototype.init = function() {
         okiGotItButton.style.display = "block";
         game.character = "male";
 
-
     })
 
-
-    
     femaleCharacter.addEventListener("click", () => {
         game.playerImages = [SPRITES.NINJAGIRLICON, SPRITES.NINJAGIRLIDLE, SPRITES.NINJAGIRLRUNNING, SPRITES.NINJAGIRLATTACKING, SPRITES.NINJAGIRLJUMPING, SPRITES.NINJAGIRLDYING, SPRITES.NINJAGIRLSLIDING, SPRITES.NINJAGIRLTHROWING];
         game.generatePlayer();
@@ -124,16 +111,12 @@ SceneManager.prototype.init = function() {
         game.character = "female";
 
     })
-
-
     
     okiGotItButton.addEventListener("click", () => {
 
         game.isGameRunning = true;   
         this.newLevel = new Level(this.setLevels[this.levelIndex].backgroundImage, this.setLevels[this.levelIndex].enemyHealth, this.setLevels[this.levelIndex].images, this.setLevels[this.levelIndex].enemyAttackPower, this.setLevels[this.levelIndex].enemyLevel, this.setLevels[this.levelIndex].isScrollAvailable);
-       
-            this.newLevel.animateCharacters();
-        
+        this.newLevel.animateCharacters();
         this.currentLevel = this.newLevel;
         okiGotItButton.style.display = "none";
         game.enemyThrowsObjects();
@@ -197,26 +180,26 @@ SceneManager.prototype.init = function() {
 
 SceneManager.prototype.startInterval = function() {
             
-            this.sceneLoop = requestAnimationFrame(this.startInterval.bind(this));
-            if(game.isNext) {
-                // if game is completed.
-                if(game.scrollCount === 5) {
-                    next = new NextScreen(SPRITES.GAMECOMPLETED);
-                    next.display();
-                    
-                }else {
-                // move to the next level.
-                    game.isGameRunning = false;
-                    levelCompletedButton.style.display = "block";
-                    next = new NextScreen(SPRITES.LEVELCOMPLETED);
-                    
-                    // this.currentLevel = next;
-                    next.display();
-                    next.showInfo();
-                }
-                
-            }else {
-                this.currentLevel.display();
-            }
+    this.sceneLoop = requestAnimationFrame(this.startInterval.bind(this));
+    if(game.isNext) {
+        // if game is completed.
+        if(game.scrollCount === 5) {
+            next = new NextScreen(SPRITES.GAMECOMPLETED);
+            next.display();
+            
+        }else {
+        // move to the next level.
+            game.isGameRunning = false;
+            levelCompletedButton.style.display = "block";
+            next = new NextScreen(SPRITES.LEVELCOMPLETED);
+            
+            // this.currentLevel = next;
+            next.display();
+            next.showInfo();
+        }
+        
+    }else {
+        this.currentLevel.display();
+    }
          
 }

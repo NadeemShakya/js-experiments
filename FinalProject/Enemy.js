@@ -13,7 +13,7 @@ Enemy.prototype.animateCharacter = function() {
 }
 // render the enemy character on canvas.
 Enemy.prototype.draw = function() {
-
+    // adjust sprite to fix on ground.
     if(this.level === 1) {
       offsettedY = this.y + 25;
     }else if(this.level === 2) {
@@ -51,13 +51,11 @@ Enemy.prototype.isTouchingPlayer = function() {
   }
 
 }
-
+// attack the player.
 Enemy.prototype.attackPlayer = function(player) {
-
   if(!this.isDisappearing) {
     if(this.isTouchingPlayer(player)) {
       AUDIOS.SWING.play();
-
       this.isAttacking = true;
       this.isRunning = false;
       player.health -= this.attackPower;
@@ -66,16 +64,13 @@ Enemy.prototype.attackPlayer = function(player) {
       }       
     }else if(player.y <= this.y &&
       player.x + player.width >= this.x && player.x <= this.x + this.width) {
-        // player is on platform or jumping.
         this.isIdle = true;
-      
     }else {
       this.isIdle = false;
       this.isAttacking = false;
       this.isRunning = true;
     }
   }
-
 }
 // update the facing direction of enemy
 // depending on the the player's position.
@@ -86,8 +81,8 @@ Enemy.prototype.updateSpriteIndex = function() {
     this.runningSpriteIndex = 1;
   }
 }
-// check and re-position enemy character's position on screen boundary.
 
+// check and re-position enemy character's position on screen boundary.
 Enemy.prototype.checkScreenBoundary = function() {
   if(this.x <= 0) {
     this.x += 150;
@@ -98,9 +93,7 @@ Enemy.prototype.checkScreenBoundary = function() {
     if(!game.isPoweringUp) {
       this.velocity.y = 0;
     }
-    
   }
-
   if(this.y <= 100) {
     this.velocity.y = 0;
   }
@@ -109,7 +102,7 @@ Enemy.prototype.checkScreenBoundary = function() {
 Enemy.prototype.followPlayer = function(player) {
   if(!this.isDisappearing) {
     if(this.runningSpriteIndex === 0) {
-      // enemy is facing east
+      // enemy is facing RIGHT
       if(player.x - (this.x + this.width / 2) >= 5) {
         this.velocity.x = this.speed;
         this.isRunning = true;
@@ -120,6 +113,7 @@ Enemy.prototype.followPlayer = function(player) {
         this.isRunning = false;
       }
     }else if(this.runningSpriteIndex === 1) {
+      // enemy is facing LEFT.
       if(this.x - (player.x + player.width / 2) >= 5) {
         this.velocity.x = -this.speed;
         this.isRunning = true;
@@ -134,7 +128,7 @@ Enemy.prototype.followPlayer = function(player) {
 
   
 }
-
+// apply the power of enemies depending on their level.
 Enemy.prototype.applyPersona = function() {
   
   if(this.level === 2) {
@@ -142,49 +136,35 @@ Enemy.prototype.applyPersona = function() {
       if(!this.hasPoweredup) {
           var clip = AUDIOS.ORKGROAN.cloneNode();
           clip.play();
-        
-        this.y = C_HEIGHT;
-        game.timer();
-        this.hasPoweredup = true;
+          this.y = C_HEIGHT;
+          game.timer();
+          this.hasPoweredup = true;
       }
-
     }
   }else if(this.level === 3) {
-
-
     function flyAttack(){
-
       AUDIOS.DANGER.play();
       for(let i = 1; i <= 20; i++) {
         let tempEnemyThrowable = new Throwable(randomNumbers(15, 685), 0,SPRITES.BOMBS, 0, randomNumbers(4, 8), DOWN, 20);
         game.enemyThrowables.push(tempEnemyThrowable);
-
       }
-    
     }
-
     level3EnemyPersona = setInterval(flyAttack.bind(this), 8000);
 
   }else if(this.level === 4) {
-
     function generateThorns() {  
       AUDIOS.EARTHCRACKING.play();
       for(let i = 0; i < 15; i++) {
-
         game.thornHolder.push(new Thorn());
-        
       }
       setTimeout(function() {
         game.thornHolder = [];
       }, 4000)
-
     }
-
     level4EnemyPersona = setInterval(generateThorns.bind(this), 8000);
 
   
   }else if(this.level === 5) {
-
     function bossPersona() {
       AUDIOS.BOSSDISSAPEAR.play();
       this.isDisappearing = true;
@@ -196,21 +176,18 @@ Enemy.prototype.applyPersona = function() {
       for(let i = 1; i <= 20; i++) {
         let tempEnemyThrowable = new Throwable(randomNumbers(15, 685), C_HEIGHT - 60, SPRITES.BOSS_THROWABLE, 0, -randomNumbers(4, 8), UP, 40);
         game.enemyThrowables.push(tempEnemyThrowable);
-  
       }
-      
       setTimeout(() => {
         AUDIOS.BOSSREAPPEAR.play();
         this.x = game.player.x;
         this.isDisappearing = false;
-        
       }, 2000);
     }
-
     level5EnemyPersona = setInterval(bossPersona.bind(this), 5000);
   }
 }
-
+// function for animating powerup of enemies.
+// only used for level 2 here.
 Enemy.prototype.animatePowerup = function() {
     this.images = [SPRITES.ORK2ICON ,  SPRITES.ORK2IDLE, SPRITES.ORK2RUNNING, SPRITES.ORK2ATTACKING,  SPRITES.ORK2DYING ];
     game.ctx.drawImage( SPRITES.AURA, game.auraSpriteIndex * 128, 0, 128, 129, this.x - 77, C_HEIGHT - 129 - 60, 250, 200);

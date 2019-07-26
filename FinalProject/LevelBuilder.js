@@ -19,29 +19,23 @@ Level.prototype.init = function() {
         // generate new enemies with different health, different images
         // if it's the new level.
         game.generateEnemies(this.enemyHealth, this.enemyImages, this.enemyAttackPower, this.enemyLevel);
-
         // apply persona of the enemies
         game.enemy.applyPersona();
-
         // generate scrolls.
         if(this.isScrollAvailable) {
             game.scrollHolder.push(new Grabbable());
         }
-
         // generate Potions with 70% chance.
         if(Math.random() < 0.7) {
             game.healthPotions.push(new Grabbable());
             game.staminaPotions.push(new Grabbable());
         }
-
     }
-
 }
 
 Level.prototype.animateCharacters = function() {
     this.animatingLoop = setInterval(function() {
         game.auraSpriteIndex = ++game.auraSpriteIndex % game.auraCount;
-        
         if(!game.player.isPlayerDead()) {
             game.player.animateCharacter();
         }
@@ -57,8 +51,9 @@ Level.prototype.animateCharacters = function() {
 Level.prototype.display = function() {
     game.ctx.clearRect(0, 0, C_WIDTH, C_HEIGHT);
     game.ctx.drawImage(this.backgroundImage, 0, 0, C_WIDTH, C_HEIGHT);
-    for(let i = 0; i < game.thornHolder.length; i++) {
 
+    // display the enemy persona thorn for level 4.
+    for(let i = 0; i < game.thornHolder.length; i++) {
         game.thornHolder[i].update();
         game.thornHolder[i].display();
         if(game.thornHolder[i].isBurning(game.player)) {
@@ -69,6 +64,7 @@ Level.prototype.display = function() {
         }
     }
 
+    // for the pickable kunais for the player.
     for(let i = 0; i < game.pickableKunais.length; i++) {
 
         if(i === scene.currentLevel.enemyLevel - 1) {
@@ -87,6 +83,8 @@ Level.prototype.display = function() {
         }
 
     }
+
+    // show the gameplay info at botom of screen.
     game.ctx.beginPath();
     game.ctx.fillStyle = "grey";
     game.ctx.fillRect(250, 20, 100, 10);
@@ -94,7 +92,6 @@ Level.prototype.display = function() {
     game.ctx.fillRect(250, 20, game.player.stamina.map(0, 100, 0, 100), 10);
     game.ctx.drawImage(SPRITES.STAMINA_POTION, 210, 12, 30, 35);
     game.ctx.closePath();
-
     game.ctx.beginPath();
     game.ctx.fillStyle = "#1a131d";
     game.ctx.fillRect(0, C_HEIGHT - 30, C_WIDTH, 30);
@@ -108,8 +105,7 @@ Level.prototype.display = function() {
     game.showKunaiCount();
     game.ctx.closePath();
 
-
-
+    // for scrolls of the gameplay.
     if(game.scrollHolder.length !== 0) {
         if(game.scrollHolder[0].isGrabbed(game.player)) {
             game.scrollCount++;
@@ -118,11 +114,11 @@ Level.prototype.display = function() {
             game.scrollHolder.splice(0, 1);
         }else {
             game.scrollHolder[0].display(SPRITES.SCROLL);  
-            game.scrollHolder[0].update();  
-            
-        }
-        
+            game.scrollHolder[0].update();     
+        } 
     }
+
+    // for healthpotions of the gameplay.
     for(let i = 0; i < game.healthPotions.length; i++) {
         game.healthPotions[i].display(SPRITES.HEALTH_POTION);
         game.healthPotions[i].update();
@@ -134,6 +130,7 @@ Level.prototype.display = function() {
         }
     }
 
+    // for the staminaPotions of the gameplay.
     for(let i = 0; i < game.staminaPotions.length; i++) {
         game.staminaPotions[i].display(SPRITES.STAMINA_POTION);
         game.staminaPotions[i].update();
@@ -145,8 +142,7 @@ Level.prototype.display = function() {
         }
     }
 
-        
-
+    // for the player of the gameplay.
     if(!game.player.isPlayerDead()) {
         game.player.draw();
         game.player.updateCharacteristic();
@@ -166,7 +162,6 @@ Level.prototype.display = function() {
         }else if(scene.currentLevel.enemyLevel === 5) {
             clearInterval(level5EnemyPersona);
         }
-        
         game.player.resetBooleansifDead();
         frameC = 0;
         currentIndex = 0;
@@ -191,7 +186,6 @@ Level.prototype.display = function() {
             
             game.player.draw();
             }else {
-
                 clearInterval(playerDyingAnimation);
                 clearInterval(game.enemyThrowableInterval);  
                 currentLevel = new StartScene(SPRITES.GAMEOVERSCREEN);
@@ -202,6 +196,8 @@ Level.prototype.display = function() {
         },200)
 
     }
+
+    // for the kunais of the gameplay.
     for(let i = game.kunais.length - 1; i >= 0; i--) {
         game.kunais[i].update();
         game.kunais[i].display();
@@ -223,6 +219,7 @@ Level.prototype.display = function() {
 
     }
 
+    // for the enemypersona of the gameplay.
     for(let i = game.enemyThrowables.length - 1; i >= 0; i--) {
         game.enemyThrowables[i].update();
         game.enemyThrowables[i].display();
@@ -239,8 +236,9 @@ Level.prototype.display = function() {
         }
 
     }
+
+    // for the enemy of the gameplay.
     if(!game.enemy.isPlayerDead()) {
-        
         if(scene.currentLevel.enemyLevel === 2) {
             game.enemy.applyPersona();
         }
@@ -250,14 +248,12 @@ Level.prototype.display = function() {
 
         }
         game.enemy.draw();
-
         game.enemy.updateSpriteIndex();
         game.enemy.followPlayer(game.player);
         game.enemy.checkScreenBoundary();
         game.player.attackingEnemy(game.enemy);
         game.enemy.showHealth(C_WIDTH - 145, 20);
     }else {
-
         if(scene.currentLevel.enemyLevel === 3) {
             clearInterval(level3EnemyPersona);
         }else if(scene.currentLevel.enemyLevel === 4) {
@@ -274,7 +270,6 @@ Level.prototype.display = function() {
         game.kunais = [];        
     }
     
-
     // moving to new level .
     if(this.isScrollCollected && game.enemy.isPlayerDead()) {
         game.healthPotions = [];
@@ -293,6 +288,8 @@ Level.prototype.display = function() {
 
         
     }
+
+    // animating the enemy power up.
     if(game.isPoweringUp && game.enemy) {
         game.enemy.animatePowerup();
 }

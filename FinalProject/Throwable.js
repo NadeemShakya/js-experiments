@@ -1,5 +1,5 @@
 
-
+// throwables for enemy and player.
 class Throwable {
     constructor(x, y, image, velX, velY, movDirection, size) {
         this.x = x;
@@ -16,6 +16,7 @@ class Throwable {
     }
 }
 
+// initialize the objects.
 Throwable.prototype.init = function(character) {
     
      if(character.movingDirection == RIGHT) {
@@ -26,30 +27,28 @@ Throwable.prototype.init = function(character) {
         this.velocity.x = -10;
     }
 }    
-
+// update the moving position.
 Throwable.prototype.update = function() {
     this.x += this.velocity.x;
     this.y += this.velocity.y;
 }
-
+// display the objects on the game canvas.
 Throwable.prototype.display = function() {
     if(this.movingDirection ==  RIGHT) {
 
         game.ctx.drawImage(this.image, 0, 0, this.width, this.height, this.x, this.y, this.width,this.height);
     }else if(this.movingDirection == LEFT) {
-
-
         game.ctx.drawImage(this.image, this.width, 0, this.width, this.height, this.x, this.y, this.width, this.height);
     }else if(this.movingDirection == DOWN) {
-        console.log("DDIWN");
+      
         game.ctx.drawImage(this.image,this.x, this.y, this.width,this.height);
     }else if(this.movingDirection === UP) {
         game.ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
     }
 }
+// check if the object hits any other object(player and enemy).
 Throwable.prototype.hasHitObject = function(object) {
     if(!game.isPoweringUp) {
-
         if(this.x >= object.x && this.x + this.width <= object.x + object.width) {
             if(this.y >= object.y && this.y <= object.y + object.height) {
                 return true;
@@ -58,9 +57,8 @@ Throwable.prototype.hasHitObject = function(object) {
             
     }
 
-
 }
-
+// check if the object hits the platform.
 Throwable.prototype.hasHitPlatform = function() {
     if(!game.isPoweringUp) {
         for(let i = 0; i < game.platform.length; i++) {
@@ -75,7 +73,7 @@ Throwable.prototype.hasHitPlatform = function() {
         }
     }
 }
-
+// check if the object is off the screen.
 Throwable.prototype.isOffTheScreen = function() {
     if(this.x >= C_WIDTH || this.x <= 0) {
         return true;

@@ -1,13 +1,11 @@
 
+// Ninja Offsets
+
 const NINJAOFFSET = 25;
-// ninja boy sword attack offsets.
 let NINJAATTACKOFFSET = 12;
 let NINJAATTACKSWORDOFFSET = 50;
 
-
 class Player extends Character{
-  
-
   constructor(x, y, width, height, movingDirection, spriteIndex, images, attackPower, level) {
     super(x, y, width, height, movingDirection, spriteIndex, images, attackPower, null, null, level);
     this.init();
@@ -16,17 +14,17 @@ class Player extends Character{
           37: this.moveLeft,
           39: this.moveRight,
           38: this.jump,
-        
         }
       , 60)
   }
 }
 
-Player.prototype.updateCharacteristic = function() {
 
+// update the player's speed on the basis of stamina
+Player.prototype.updateCharacteristic = function() {
   this.speed = this.stamina.map(0, 100, 1.5, 6);
-  
 }
+
 // check if game.player is close to the enemy.
 Player.prototype.isPlayerClose = function(enemy) {
   if(enemy.x + enemy.width > this.x && enemy.x < this.x + this.width) {
@@ -35,7 +33,7 @@ Player.prototype.isPlayerClose = function(enemy) {
     }
   }
 }
-
+// player swings the sword.
 Player.prototype.swingSword = function() {
   // decrease the stamina if sword is swinging.
   if(this.isAttacking) {
@@ -56,30 +54,24 @@ Player.prototype.swingSword = function() {
 // game.player attacks enemy.
 Player.prototype.attackingEnemy = function(enemy) {
 
-
   if(this.isPlayerClose(enemy) && this.isAttacking && !game.isPoweringUp) {
-
       enemy.health -= this.attackPower;
       // if(enemy.runningSpriteIndex == 0) {
       //   enemy.x -= enemy.width / 2;
       // }else if(enemy.runningSpriteIndex == 1) {
       //   enemy.x += enemy.width / 2;
       // }  
-    
   }
   if(this.isPlayerClose(enemy) && this.isSliding) {
     enemy.health -= (this.attackPower * 0.25);
-    
   }
   if(enemy.health < 0) {
     enemy.health = 0;
   }
-
 }
 
 // render the game.player character.
 Player.prototype.draw = function() {
-
   if(this.isDead) {
     game.ctx.drawImage(this.images[5], player_clippingX, player_clippingY, FRAMEWIDTH, FRAMEHEIGHT, this.x + NINJAOFFSET / 2, this.y, this.width + 20, this.height + 10);
   }else if(this.isJumping) {
@@ -200,13 +192,11 @@ Player.prototype.checkScreenBoundary = function() {
     this.y = C_HEIGHT - this.height - 60;
   }
 }
-
 // initialize booleans on keyup keyboard event.
 Player.prototype.init = function() {
 
   let down = false;
   document.addEventListener("keydown", (e) => {
- 
     if(down) {
       if(e.keyCode === 65 || e.keyCode === 68 || e.keyCode === 83) {
         if(this == game.player) {
@@ -223,8 +213,6 @@ Player.prototype.init = function() {
         }
 
       }
-
-
     }else {
       
       down = true;
@@ -295,6 +283,7 @@ Player.prototype.keyboardController = function(keys, delay) {
   }
 }
 
+// player uses the health potion.
 Player.prototype.useHealthPotion = function() {
   if(game.healthPotionsCollected !== 0) {
     var audio = AUDIOS.DRINKPOTION.cloneNode();
@@ -309,8 +298,7 @@ Player.prototype.useHealthPotion = function() {
     }
   }
 }
-
-
+// player uses the stamina potion.
 Player.prototype.useStaminaPotion = function() {
   if(game.staminaPotionsCollected !== 0) {
     var audio = AUDIOS.DRINKPOTION.cloneNode();
