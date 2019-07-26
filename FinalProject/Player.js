@@ -24,7 +24,7 @@ class Player extends Character{
 
 Player.prototype.updateCharacteristic = function() {
 
-  this.speed = this.stamina.map(0, 100, 2, 6);
+  this.speed = this.stamina.map(0, 100, 1.5, 6);
   
 }
 // check if game.player is close to the enemy.

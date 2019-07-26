@@ -134,8 +134,8 @@ class Game {
         this.timeTracker = 0;
         this.scrollSlot = [true, true, true, true, true];        
         this.scrollCount = 0;
-        this.ninjaBoyAttackPower = 100;
-        this.enemySpeed = 2;
+        this.ninjaBoyAttackPower = 0.5;
+        this.enemySpeed = 2.7;
         this.isGameRunning = false;
         this.scrollHolder = [];
         this.playerImages = [SPRITES.NINJABOYICON, SPRITES.NINJABOYIDLE, SPRITES.NINJABOYRUNNING, SPRITES.NINJABOYATTACKING, SPRITES.NINJABOYJUMPING, SPRITES.NINJABOYDEAD, SPRITES.NINJABOYSLIDING, SPRITES.NINJABOYTHROWING];
