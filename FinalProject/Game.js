@@ -136,7 +136,7 @@ class Game {
         this.timeTracker = 0;
         this.scrollSlot = [true, true, true, true, true];        
         this.scrollCount = 0;
-        this.ninjaBoyAttackPower = 100;
+        this.ninjaBoyAttackPower = 0.5;
         this.enemySpeed = 2.7;
         this.isGameRunning = false;
         this.scrollHolder = [];
