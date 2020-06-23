@@ -1,1 +1,1 @@
-red
+Images directory for readme.
