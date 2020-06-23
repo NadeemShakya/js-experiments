@@ -44,3 +44,4 @@ Now our little warrior is off to lend his hand in the recovery of the hidden scr
 <img src="images/readme/level1.png"/>
 <img src="images/readme/level3.png"/>
 
+[**Click here to play**](https://nadeemshakya.github.io/js-experiments/FinalProject/index.html)
