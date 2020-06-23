@@ -37,8 +37,8 @@ Now our little warrior is off to lend his hand in the recovery of the hidden scr
 
 ## Screenshots
 
-<img src="/images/readme/landing.png"/>
-<img src="/images/readme/enemies.png"/>
-<img src="/images/readme/level1.png"/>
-<img src="/images/readme/level2.png"/>
+<img src="images/readme/landing.png"/>
+<img src="images/readme/enemies.png"/>
+<img src="images/readme/level1.png"/>
+<img src="images/readme/level3.png"/>
 
