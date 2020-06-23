@@ -3,7 +3,7 @@
 
 A game completed as a final project assignment inspired from the classic mini-clip game: 3 Foot Ninja.
 
-[Click here to play the game.](https://nadeemshakya.github.io/js-experiments/FinalProject/index.html)
+[Click here to play the game. :eyes:](https://nadeemshakya.github.io/js-experiments/FinalProject/index.html)
 
 
 ## Story :scroll:
