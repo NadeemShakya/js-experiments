@@ -1,10 +1,12 @@
 
-## 3 Foot Ninja 
+## 3 Foot Ninja :rage1:
 
 A game completed as a final project assignment inspired from the classic mini-clip game: 3 Foot Ninja.
 
+[Click here to play the game.](https://nadeemshakya.github.io/js-experiments/FinalProject/index.html)
 
-## Story
+
+## Story :scroll:
 
 Three long years have passed since our little warriors' journey began.
 
@@ -21,7 +23,7 @@ Towns were burned and it's inhabitants slain or shackled. The King of the southe
 
 Now our little warrior is off to lend his hand in the recovery of the hidden scrolls and to save the village.
 
-## Features
+## Features :boom:
 
 - Choose between characters(male/female)
 - 5 Different levels of enemies
@@ -29,13 +31,13 @@ Now our little warrior is off to lend his hand in the recovery of the hidden scr
 - Speed potions
 - Platforming
 
-## Tools Used
+## Tools Used :open_file_folder:
 
 - HTML5
 - CSS
 - Vanilla JavaScript
 
-## Screenshots
+## Screenshots :camera:
 
 <img src="images/readme/landing.png"/>
 <img src="images/readme/enemies.png"/>
