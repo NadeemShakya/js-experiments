@@ -19,14 +19,14 @@ Deep in the bowels of evil, the hated lords raised armies and prepared to smite 
 
 So that it came to be that on this day a week ago, our little hero received news that the south had been overtaken of dead and mutated armies.
 
-Towns were burned and it's inhabitants slain or shackled. The King of the southern lands has lost his daughter in a siege of the castle.
+Towns were burned and it's inhabitants slain or shackled.
 
 Now our little warrior is off to lend his hand in the recovery of the hidden scrolls and to save the village.
 
 ## Features :boom:
 
 - Choose between characters(male/female)
-- 5 Different levels of enemies
+- 5 Different levels of enemies with different powers
 - Health potions
 - Speed potions
 - Platforming
